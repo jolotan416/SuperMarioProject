@@ -34,14 +34,8 @@ void AMario::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 
 void AMario::MoveCamera(float XMovement, float YMovement) {
-	auto currentYControlRotation = GetControlRotation().GetComponentForAxis(EAxis::Type::Y);
-	UE_LOG(LogCore, Warning, TEXT("MovementY: %f, CurrentY: %f"), YMovement, currentYControlRotation);
+	UE_LOG(LogCore, Warning, TEXT("MovementX: %f, MovementY: %f"), XMovement, YMovement);
 
 	AddControllerYawInput(XMovement);
-	if ((currentYControlRotation >= 0.0f && currentYControlRotation <= 24.0f) ||
-		(currentYControlRotation >= 320.0f && currentYControlRotation <= 360.0f) ||
-		(currentYControlRotation > 24.0f && currentYControlRotation < 270.0f && YMovement > 0.0f) ||
-		(currentYControlRotation > 90.0f && currentYControlRotation < 320.0f && YMovement < 0.0f)) {
-		AddControllerPitchInput(YMovement);
-	}
+	AddControllerPitchInput(YMovement);
 }
